@@ -1,0 +1,81 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Feature {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
+  icon        String
+}
+
+model Service {
+  id          Int      @id @default(autoincrement())
+  category    String
+  description String
+  items       Json
+  icon        String
+}
+
+model Step {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
+}
+
+model Doctor {
+  id           Int    @id @default(autoincrement())
+  name         String
+  qualification String
+  specialty    String
+  experience   String
+  image        String
+}
+
+model GalleryItem {
+  id    Int    @id @default(autoincrement())
+  label String
+  image String
+}
+
+model Testimonial {
+  id     Int    @id @default(autoincrement())
+  name   String
+  role   String
+  quote  String
+  rating Int
+  image  String
+}
+
+model Technology {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
+}
+
+model Location {
+  id      Int    @id @default(autoincrement())
+  name    String
+  address String
+  hours   String
+  phone   String
+  map     String
+}
+
+model Faq {
+  id       Int    @id @default(autoincrement())
+  question String
+  answer   String
+}
+
+model BlogPost {
+  id       Int    @id @default(autoincrement())
+  title    String
+  category String
+  image    String
+}

@@ -194,8 +194,62 @@ const blogPosts = [
   { title: 'Preventing Tooth Decay in Children', category: 'Pediatric Dental', image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=700&q=80' },
 ];
 
+const iconMap: Record<string, typeof Stethoscope> = {
+  Stethoscope,
+  ScanLine,
+  ShieldCheck,
+  BadgeCheck,
+  HeartPulse,
+  SmilePlus,
+  Sparkles,
+  Activity,
+};
+
+const defaultSiteData = {
+  features,
+  services,
+  steps,
+  dentists,
+  gallery,
+  testimonials,
+  technologies,
+  locations,
+  faqs,
+  blogPosts,
+};
+
+const normalizeSiteData = (data: any) => ({
+  features: (data?.features ?? []).map((feature: any) => ({
+    ...feature,
+    icon: iconMap[String(feature.icon)] ?? Stethoscope,
+  })),
+  services: (data?.services ?? []).map((service: any) => ({
+    ...service,
+    items: Array.isArray(service.items) ? service.items : [],
+    icon: iconMap[String(service.icon)] ?? Sparkles,
+  })),
+  steps: data?.steps ?? [],
+  dentists: data?.dentists ?? [],
+  gallery: data?.gallery ?? [],
+  testimonials: data?.testimonials ?? [],
+  technologies: data?.technologies ?? [],
+  locations: data?.locations ?? [],
+  faqs: data?.faqs ?? [],
+  blogPosts: data?.blogPosts ?? [],
+});
+
 export default function HomePage() {
   const [darkMode, setDarkMode] = useState(false);
+  const [siteData, setSiteData] = useState(defaultSiteData);
+  const [formState, setFormState] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    service: 'General Checkup',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { features, services, steps, dentists, gallery, testimonials, technologies, locations, faqs, blogPosts } = siteData;
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [submitted, setSubmitted] = useState(false);
@@ -216,7 +270,52 @@ export default function HomePage() {
       setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 6000);
     return () => window.clearInterval(interval);
+  }, [testimonials.length]);
+
+  useEffect(() => {
+    fetch('/api/site-data')
+      .then((response) => response.json())
+      .then((data) => setSiteData(normalizeSiteData(data)))
+      .catch(() => setSiteData(defaultSiteData));
   }, []);
+
+  const handleFormChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { id, value } = event.target;
+    setFormState((current) => ({ ...current, [id]: value }));
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/appointments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formState),
+      });
+
+      if (!response.ok) {
+        throw new Error('Unable to save appointment');
+      }
+
+      setSubmitted(true);
+      setFormState({
+        name: '',
+        phone: '',
+        email: '',
+        service: 'General Checkup',
+        message: '',
+      });
+    } catch (error) {
+      setSubmitted(false);
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900 transition-colors dark:bg-slate-950 dark:text-slate-100">
@@ -602,29 +701,50 @@ export default function HomePage() {
           </div>
           <div className="rounded-[2rem] border border-slate-200 bg-white p-8 shadow-sm dark:border-slate-800 dark:bg-slate-900">
             <form
-              onSubmit={(event) => {
-                event.preventDefault();
-                setSubmitted(true);
-              }}
+              onSubmit={handleSubmit}
               className="space-y-4"
             >
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="mb-2 block text-sm font-medium">Name</label>
-                  <input id="name" required className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-cyan-500 dark:border-slate-700 dark:bg-slate-950" />
+                  <input 
+                    id="name"
+                    value={formState.name}
+                    onChange={handleFormChange}
+                    required
+                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-cyan-500 dark:border-slate-700 dark:bg-slate-950" 
+                  />
                 </div>
                 <div>
                   <label htmlFor="phone" className="mb-2 block text-sm font-medium">Phone</label>
-                  <input id="phone" required className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-cyan-500 dark:border-slate-700 dark:bg-slate-950" />
+                  <input 
+                    id="phone"
+                    value={formState.phone}
+                    onChange={handleFormChange}
+                    required
+                    className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-cyan-500 dark:border-slate-700 dark:bg-slate-950" 
+                  />
                 </div>
               </div>
               <div>
                 <label htmlFor="email" className="mb-2 block text-sm font-medium">Email</label>
-                <input id="email" type="email" required className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-cyan-500 dark:border-slate-700 dark:bg-slate-950" />
+                <input 
+                  id="email"
+                  type="email"
+                  value={formState.email}
+                  onChange={handleFormChange}
+                  required
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-cyan-500 dark:border-slate-700 dark:bg-slate-950" 
+                />
               </div>
               <div>
                 <label htmlFor="service" className="mb-2 block text-sm font-medium">Service Needed</label>
-                <select id="service" className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-cyan-500 dark:border-slate-700 dark:bg-slate-950">
+                <select 
+                  id="service"
+                  value={formState.service}
+                  onChange={handleFormChange}
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-cyan-500 dark:border-slate-700 dark:bg-slate-950"
+                >
                   <option>General Checkup</option>
                   <option>Cosmetic Dentistry</option>
                   <option>Implants</option>
@@ -633,10 +753,17 @@ export default function HomePage() {
               </div>
               <div>
                 <label htmlFor="message" className="mb-2 block text-sm font-medium">Message</label>
-                <textarea id="message" rows={4} className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-cyan-500 dark:border-slate-700 dark:bg-slate-950" placeholder="Tell us about your smile goals or concerns." />
+                <textarea 
+                  id="message"
+                  rows={4}
+                  value={formState.message}
+                  onChange={handleFormChange}
+                  className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 outline-none transition focus:border-cyan-500 dark:border-slate-700 dark:bg-slate-950" 
+                  placeholder="Tell us about your smile goals or concerns." 
+                />
               </div>
-              <button type="submit" className="inline-flex items-center gap-2 rounded-full bg-cyan-600 px-5 py-3 font-semibold text-white transition hover:bg-cyan-700">
-                Request Appointment <ArrowRight className="h-4 w-4" />
+              <button type="submit" disabled={isSubmitting} className="inline-flex items-center gap-2 rounded-full bg-cyan-600 px-5 py-3 font-semibold text-white transition hover:bg-cyan-700 disabled:cursor-not-allowed disabled:opacity-70">
+                {isSubmitting ? 'Sending...' : 'Request Appointment'} <ArrowRight className="h-4 w-4" />
               </button>
               {submitted && <p className="text-sm font-medium text-cyan-600">Thank you! We will contact you shortly to confirm your visit.</p>}
             </form>
@@ -662,6 +789,7 @@ export default function HomePage() {
               <li><a href="#services" className="hover:text-cyan-600">Services</a></li>
               <li><a href="#dentists" className="hover:text-cyan-600">Dentists</a></li>
               <li><a href="#contact" className="hover:text-cyan-600">Contact</a></li>
+              <li><a href="/admin" className="hover:text-cyan-600">Admin</a></li>
             </ul>
           </div>
           <div>

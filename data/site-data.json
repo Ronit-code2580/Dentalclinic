@@ -1,0 +1,160 @@
+{
+  "features": [
+    {
+      "title": "Experienced Dentists",
+      "description": "Led by board-certified specialists with decades of trusted care.",
+      "icon": "Stethoscope"
+    },
+    {
+      "title": "Advanced Dental Technology",
+      "description": "Digital diagnostics and precision tools for faster, safer treatment.",
+      "icon": "ScanLine"
+    },
+    {
+      "title": "Pain-Free Treatments",
+      "description": "Gentle care, sedation options, and comfort-focused treatment plans.",
+      "icon": "ShieldCheck"
+    },
+    {
+      "title": "Affordable Pricing",
+      "description": "Transparent treatment plans and flexible payment options.",
+      "icon": "BadgeCheck"
+    },
+    {
+      "title": "Emergency Care",
+      "description": "Same-day relief for urgent dental issues and unexpected pain.",
+      "icon": "HeartPulse"
+    },
+    {
+      "title": "Personalized Plans",
+      "description": "Tailored treatment paths to match your lifestyle and smile goals.",
+      "icon": "SmilePlus"
+    }
+  ],
+  "services": [
+    {
+      "category": "General Dentistry",
+      "description": "Routine exams and preventive care designed to keep your smile healthy.",
+      "items": ["Dental Checkups", "Teeth Cleaning", "Fillings"],
+      "icon": "Sparkles"
+    },
+    {
+      "category": "Cosmetic Dentistry",
+      "description": "Elevate your confidence with smile-enhancing treatments.",
+      "items": ["Teeth Whitening", "Veneers", "Smile Makeovers"],
+      "icon": "SmilePlus"
+    },
+    {
+      "category": "Restorative Dentistry",
+      "description": "Restore function and strength with durable, natural-looking solutions.",
+      "items": ["Dental Crowns", "Bridges", "Dentures"],
+      "icon": "ShieldCheck"
+    },
+    {
+      "category": "Advanced Treatments",
+      "description": "Modern surgical and orthodontic care for complete smile transformation.",
+      "items": ["Dental Implants", "Root Canal Treatment", "Invisalign"],
+      "icon": "Activity"
+    }
+  ],
+  "steps": [
+    { "title": "Book Consultation", "description": "Choose a time that works for you and share your needs online." },
+    { "title": "Meet the Dentist", "description": "We assess your oral health and map out your best treatment options." },
+    { "title": "Receive Treatment", "description": "Enjoy precise care delivered with comfort-first technology." },
+    { "title": "Follow-up Care", "description": "Every plan includes support, recovery guidance, and future prevention." }
+  ],
+  "dentists": [
+    {
+      "name": "Dr. Maya Chen",
+      "qualification": "DDS, MSc Restorative Dentistry",
+      "specialty": "Cosmetic Dentistry",
+      "experience": "15+ Years",
+      "image": "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "name": "Dr. Daniel Brooks",
+      "qualification": "DDS, PhD Oral Surgery",
+      "specialty": "Dental Implants",
+      "experience": "12+ Years",
+      "image": "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&q=80"
+    },
+    {
+      "name": "Dr. Priya Shah",
+      "qualification": "DDS, Invisalign Provider",
+      "specialty": "Orthodontics",
+      "experience": "10+ Years",
+      "image": "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=600&q=80"
+    }
+  ],
+  "gallery": [
+    {
+      "label": "Smile Transformation",
+      "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      "label": "Confidence Boost",
+      "image": "https://images.unsplash.com/photo-1606811971618-4486d14f3f99?auto=format&fit=crop&w=700&q=80"
+    },
+    {
+      "label": "Family Care",
+      "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=700&q=80"
+    }
+  ],
+  "testimonials": [
+    {
+      "name": "Megan T.",
+      "role": "Patient",
+      "quote": "The team made my implant journey feel effortless and reassuring. My new smile looks natural and healthy.",
+      "rating": 5,
+      "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+      "name": "James R.",
+      "role": "Patient",
+      "quote": "Every visit feels premium and personal. The technology and attention to detail are outstanding.",
+      "rating": 5,
+      "image": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+      "name": "Nadia S.",
+      "role": "Patient",
+      "quote": "I brought my kids in for checkups and we all felt welcome. The care is gentle and truly family-friendly.",
+      "rating": 5,
+      "image": "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=200&q=80"
+    }
+  ],
+  "technologies": [
+    { "title": "Digital X-rays", "description": "Low-radiation imaging for fast diagnosis and treatment planning." },
+    { "title": "Intraoral Scanners", "description": "Precise 3D scans create custom-fit restorations without messy impressions." },
+    { "title": "3D Imaging", "description": "Advanced planning for implants, surgery, and guided dentistry." },
+    { "title": "Laser Dentistry", "description": "Comfort-focused treatments with improved healing and reduced discomfort." }
+  ],
+  "locations": [
+    {
+      "name": "Downtown Seattle",
+      "address": "128 Harbor Avenue, Seattle, WA 98101",
+      "hours": "Mon–Fri 9am–6pm • Sat 10am–2pm",
+      "phone": "(206) 555-0148",
+      "map": "https://www.google.com/maps?q=Seattle&output=embed"
+    },
+    {
+      "name": "Bellevue Wellness Center",
+      "address": "43 Lake Street, Bellevue, WA 98004",
+      "hours": "Mon–Thu 8am–5pm • Fri 8am–3pm",
+      "phone": "(425) 555-0182",
+      "map": "https://www.google.com/maps?q=Bellevue&output=embed"
+    }
+  ],
+  "faqs": [
+    { "question": "How often should I visit a dentist?", "answer": "Most patients benefit from a checkup and cleaning every six months, though some may need more frequent care." },
+    { "question": "Is teeth whitening safe?", "answer": "Yes. Professionally supervised whitening is safe and can be tailored to your sensitivity needs." },
+    { "question": "What is the cost of dental implants?", "answer": "Costs vary based on case complexity, but we provide a detailed treatment plan before any procedure begins." },
+    { "question": "Do you offer emergency dental treatment?", "answer": "Absolutely. We prioritize urgent cases and can often offer same-day appointments for pain relief." },
+    { "question": "Do you accept insurance?", "answer": "We work with many insurance providers and can help you understand your benefits and coverage options." }
+  ],
+  "blogPosts": [
+    { "title": "Dental Hygiene Tips for a Brighter Smile", "category": "Oral Wellness", "image": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=700&q=80" },
+    { "title": "Benefits of Dental Implants for Everyday Confidence", "category": "Restorative Care", "image": "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=700&q=80" },
+    { "title": "Preventing Tooth Decay in Children", "category": "Pediatric Dental", "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=700&q=80" }
+  ]
+}

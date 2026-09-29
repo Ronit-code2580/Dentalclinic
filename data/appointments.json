@@ -1,0 +1,20 @@
+[
+  {
+    "id": "1790691189450",
+    "name": "Test Patient",
+    "phone": "1234567",
+    "email": "test@example.com",
+    "service": "General Checkup",
+    "message": "Need a cleaning",
+    "createdAt": "2026-09-29T14:13:09.450Z"
+  },
+  {
+    "id": "1790693494067",
+    "name": "Rojesh Adhikari",
+    "phone": "7775765567",
+    "email": "aaa7@gmail.com",
+    "service": "General Checkup",
+    "message": "hi",
+    "createdAt": "2026-09-29T14:51:34.067Z"
+  }
+]
